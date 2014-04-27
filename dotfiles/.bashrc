@@ -23,7 +23,6 @@ export LANGUAGE=en_US.UTF-8
 export LC_CTYPE=UTF-8
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-source ~/.nvm/nvm.sh
 
 ##Heroku Postgres##
 export REST_APP_HOST=xxx
