@@ -6,3 +6,8 @@ curl -sSL https://get.rvm.io | bash -s stable
 source /usr/local/rvm/scripts/rvm
 rvm use --install 2.1.1
 gem install rails --no-ri --no-rdoc
+cd /vagrant
+git clone https://github.com/srowley/toolkit.git
+cp toolkit/dotfiles/.bashrc ~/.bashrc
+cp toolkit/dotfiles/.tmux.conf ~/.tmux.conf
+cp toolkit/dotfiles/.vimrc ~/.vimrc
