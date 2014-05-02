@@ -1,3 +1,6 @@
+# DB setup
+gem 'pg'
+
 # RSpec setup
 gem_group :development, :test do
   gem 'rspec-rails'

@@ -8,7 +8,5 @@ rvm use --install 2.1.1
 gem install rails --no-ri --no-rdoc
 cd /vagrant
 git clone https://github.com/srowley/toolkit.git
-cp /vagrant/toolkit/dotfiles/.bashrc ~/.bashrc
-cp /vagrant/toolkit/dotfiles/.tmux.conf ~/.tmux.conf
-cp /vagrant/toolkit/dotfiles/.vimrc ~/.vimrc
 source ~/.bashrc
+sudo -u postgres createuser -a vagrant

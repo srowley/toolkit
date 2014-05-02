@@ -25,8 +25,8 @@ export LC_CTYPE=UTF-8
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ##Heroku Postgres##
-export REST_APP_HOST=xxx
-export REST_APP_DATABASE=xxx
-export REST_APP_USER=xxx
-export REST_APP_PASSWORD=xxx
-export REST_APP_PORT=xxxx
+export REST_APP_HOST="xxx"
+export REST_APP_DATABASE="xxx"
+export REST_APP_USER="xxx"
+export REST_APP_PASSWORD="xxx"
+export REST_APP_PORT="xxxx"
