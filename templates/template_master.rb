@@ -44,7 +44,8 @@ gem_group :development, :test do
 end
 
 # Remove extraneous stuff in Gemfile; thanks AppComposer
-gsub_file 'Gemfile', /\n^\s*\n/, "\n"
+gsub_file 'Gemfile', /sqlite3/, "pg"
+gsub_file 'Gemfile', /#.*\n/, "\n"
 gsub_file 'Gemfile', /#.*\n/, "\n"
 
 run 'bundle install'
