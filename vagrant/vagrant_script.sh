@@ -11,6 +11,7 @@ cd /vagrant
 git clone https://github.com/srowley/toolkit.git
 cp /vagrant/toolkit/dotfiles/.bashrc /home/vagrant/.bashrc
 cp /vagrant/toolkit/dotfiles/.vimrc /home/vagrant/.vimrc
+cp /vagrant/toolkit/dotfiles/.vimrc /home/vagrant/.railsrc
 source /home/vagrant/.bashrc
 sudo -u postgres createuser -a vagrant
 mkdir -p /home/vagrant/.vim/autoload /home/vagrant/.vim/bundle
