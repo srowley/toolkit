@@ -1,6 +1,3 @@
-# DB setup
-gem 'pg'
-
 # RSpec setup
 gem_group :development, :test do
   gem 'rspec-rails'
@@ -38,13 +35,15 @@ end
 gem 'haml'
 gem 'haml-rails'
 
+# Zurb
+gem 'zurb-foundation'
+
 # Vagrant setup
 gem_group :development, :test do
   gem 'therubyracer', platforms: :ruby
 end
 
 # Remove extraneous stuff in Gemfile; thanks AppComposer
-gsub_file 'Gemfile', /sqlite3/, "pg"
 gsub_file 'Gemfile', /#.*\n/, "\n"
 gsub_file 'Gemfile', /#.*\n/, "\n"
 
