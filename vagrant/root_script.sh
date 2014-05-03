@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main"| sudo tee -a /etc/apt/sources.list
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update
