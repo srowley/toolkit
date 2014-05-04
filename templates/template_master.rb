@@ -45,13 +45,47 @@ end
 
 # Remove extraneous stuff in Gemfile; thanks AppComposer
 gsub_file 'Gemfile', /#.*\n/, "\n"
-gsub_file 'Gemfile', /#.*\n/, "\n"
+
+# Stuff you need to do if you skip ActiveRecord,
+# assuming you are using Sequel
+  
+if options[:skip_active_record]
+  gem 'pg'
+  gem 'sequel-rails'
+  file 'config/database.yml', <<-TEXT
+default: &default
+  adapter: postgresql
+  username: vagrant
+  template: template0
+  locale: en_US.UTF8
+  encoding: unicode
+TEXT
+
+  inject_into_file "config/database.yml", \
+    after: "encoding: unicode\n" do
+    
+      "development:\n" \
+      "  <<: *default\n" \
+      "  database: #{app_path}_development\n\n" \
+      "test:\n" \
+      "  <<: *default\n" \
+      "  database: #{app_path}_test\n\n"
+  end
+end
 
 run 'bundle install'
 
+rake "db:create"
+
 run 'rails g rspec:install'
 
-inject_into_file "spec/spec_helper.rb", \
+gsub_file "spec/spec_helper.rb", /ActiveRecord::Migration/, "# ActiveRecord::Migration"
+  
+gsub_file "spec/spec_helper.rb",  /config.fixture_path/, "# config.fixture_path"
+
+gsub_file "spec/spec_helper.rb", /config.use_transactional_fixtures = true/, "# config.use_transactional_fixtures = true"
+
+inject_into_file  "spec/spec_helper.rb", \
   after: "require 'rspec/autorun'\n" do
   <<-TEXT
 require 'capybara/rspec'
@@ -71,9 +105,6 @@ inject_into_file "spec/spec_helper.rb", \
   # Include Factory Girl syntax to avoid namespacing FactoryGirl calls
   config.include FactoryGirl::Syntax::Methods
 
-  # Database Cleaner config
-  config.use_transactional_fixtures = false
-
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
   end
@@ -87,5 +118,15 @@ inject_into_file "spec/spec_helper.rb", \
   end
   TEXT
 end
+
+unless options[:skip_active_record]
+  inject_into_file "spec/spec_helper.rb", \
+      after: "config.order = \"random\"\n" do
+        "config.use_transactional_fixtures = false\n"
+  end
+end
+
+#Zurb setup
+run 'rails g foundation:install'
 
 run 'bundle exec guard init rspec'
